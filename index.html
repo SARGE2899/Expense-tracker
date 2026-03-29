@@ -772,7 +772,7 @@ function buildCharts() {
   });
   const tKeys = Object.keys(typeMap).sort((a,b) => typeMap[b]-typeMap[a]);
   const totalOut2 = tKeys.reduce((s,k) => s + typeMap[k], 0);
-  const palette = ['#C084FC','#818CF8','#60A5FA','#34D399','#FDE047','#FB923C','#F87171','#F472B6','#38BDF8','#A78BFA'];
+  const palette = ['#C084FC','#F87171','#60A5FA','#34D399','#FDE047','#FB923C','#F87171','#F472B6','#38BDF8','#A78BFA'];
 
   if (charts['type']) charts['type'].destroy();
   charts['type'] = new Chart(document.getElementById('chart-type'), {
