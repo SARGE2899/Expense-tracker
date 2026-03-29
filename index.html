@@ -45,16 +45,17 @@
     border-bottom: 1.5px solid var(--border);
     padding: 20px 20px 16px;
     display: flex;
-    align-items: baseline;
-    gap: 14px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
     overflow: hidden;
   }
   header h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 400;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
   }
   header span {
     font-family: 'DM Mono', monospace;
@@ -66,7 +67,7 @@
   }
 
   main { padding: 20px; max-width: 1400px; margin: 0 auto; }
-  @media (min-width: 700px) { main { padding: 32px 40px; } header { padding: 28px 40px 20px; } }
+  @media (min-width: 700px) { main { padding: 32px 40px; } header { padding: 32px 40px 24px; } }
 
   /* UPLOAD */
   .upload-zone {
@@ -772,7 +773,7 @@ function buildCharts() {
   });
   const tKeys = Object.keys(typeMap).sort((a,b) => typeMap[b]-typeMap[a]);
   const totalOut2 = tKeys.reduce((s,k) => s + typeMap[k], 0);
-  const palette = ['#C084FC','#F87171','#60A5FA','#34D399','#FDE047','#FB923C','#F87171','#F472B6','#38BDF8','#A78BFA'];
+  const palette = ['#C084FC','#818CF8','#60A5FA','#34D399','#FDE047','#FB923C','#F87171','#F472B6','#38BDF8','#A78BFA'];
 
   if (charts['type']) charts['type'].destroy();
   charts['type'] = new Chart(document.getElementById('chart-type'), {
