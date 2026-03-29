@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Financial Planner</title>
+<title>Expense Tracker</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -48,6 +48,7 @@
     align-items: baseline;
     gap: 14px;
     flex-wrap: wrap;
+    overflow: hidden;
   }
   header h1 {
     font-family: 'DM Serif Display', serif;
@@ -60,9 +61,11 @@
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.05em;
+    word-break: break-word;
+    max-width: 100%;
   }
 
-  main { padding: 20px; max-width: 1400px; }
+  main { padding: 20px; max-width: 1400px; margin: 0 auto; }
   @media (min-width: 700px) { main { padding: 32px 40px; } header { padding: 28px 40px 20px; } }
 
   /* UPLOAD */
@@ -315,7 +318,7 @@
 <body>
 
 <header>
-  <h1>Financial Planner</h1>
+  <h1>Expense Tracker</h1>
   <span id="header-range"></span>
 </header>
 
@@ -537,7 +540,7 @@ function buildDashboard() {
   const maxD = new Date(Math.max(...dates));
   const uniqueTypes = [...new Set(allRows.map(r => r.txType))];
   document.getElementById('header-range').textContent =
-    `${fmt(minD)} – ${fmt(maxD)}  ·  ${allRows.length} transactions  ·  types: ${uniqueTypes.join(', ')}`;
+    `${fmt(minD)} – ${fmt(maxD)}  ·  ${allRows.length} transactions  ·  ${uniqueTypes.length} types`;
 
   buildCards();
   buildFilters();
@@ -769,7 +772,7 @@ function buildCharts() {
   });
   const tKeys = Object.keys(typeMap).sort((a,b) => typeMap[b]-typeMap[a]);
   const totalOut2 = tKeys.reduce((s,k) => s + typeMap[k], 0);
-  const palette = ['#C084FC','#F87171','#60A5FA','#34D399','#FDE047','#FB923C','#F87171','#F472B6','#38BDF8','#A78BFA'];
+  const palette = ['#C084FC','#818CF8','#60A5FA','#34D399','#FDE047','#FB923C','#F87171','#F472B6','#38BDF8','#A78BFA'];
 
   if (charts['type']) charts['type'].destroy();
   charts['type'] = new Chart(document.getElementById('chart-type'), {
